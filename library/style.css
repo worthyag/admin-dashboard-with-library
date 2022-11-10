@@ -12,52 +12,67 @@ div.books > h2 {
     font-weight: bold;
 }
 
-div.books > div.box-container {
+div.books > div.books-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 32px 16px;
     margin: 16px;
-    height: max(600px);
+    /* height: max(600px); */
 }
 
-div.books > div.box-container div.box-items {
+div.books > div.books-container div.book-item {
     background-color: var(--colour-white);
     border-radius: 16px;
-    border-left: 20px solid var(--colour-lilac);
     filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
     display: grid;
     padding: 16px 0 0 16px;
     grid-template-rows: 1fr auto;
 }
 
-div.books > div.box-container div.box-items h4 {
+div.book-item.read {
+    border-left: 20px solid rgb(143, 209, 143);
+}
+
+div.book-item{
+    border-left: 20px solid red;
+    border-left: 20px solid var(--colour-lilac);
+}
+
+div.books > div.books-container div.book-item h4 {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 8px;
 }
 
-div.books > div.box-container div.box-items h4:hover {
+div.books > div.books-container div.book-item h4:hover {
     text-decoration: underline;
     cursor: pointer;
     color: var(--colour-dark-grey);
 }
 
-div.books > div.box-container div.box-items p {
+div.books > div.books-container div.book-item p {
     font-size: 14px;
     color: var(--colour-light-black);
     margin-right: 8px;
 }
 
-div.box-container div.box-items div.box-icons {
+div.books-container div.book-item div.book-icons {
     text-align: right;
     margin: 16px 16px 8px 0;
 }
 
-div.box-container div.box-items div.box-icons img {
+div.books-container div.book-item div.book-icons img {
     padding: 0 8px;
 }
 
-div.box-container div.box-items div.box-icons img:hover {
+div.books-container div.book-item div.book-icons img:hover {
     transform: scale(1.2);
     cursor: pointer;
+}
+
+
+/* Books Icons */
+/* Started editing the bin button, to how to select it to delete the book */
+div.books-container div.book-item div.book-icons img.bin-icon:hover {
+   transform: rotate(20deg);
 }
