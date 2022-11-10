@@ -8,6 +8,16 @@
     font-family: 'Inter', sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:visited {
+    text-decoration: none;
+    color: inherit;
+}
+
 /* /////////////////////////////////////// VARIABLES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
 :root {
     --colour-teal: #318EC2;
@@ -236,7 +246,7 @@ div.projects > h2 {
 
 div.projects > div.box-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 32px 16px;
     margin: 16px;
     height: max(600px);

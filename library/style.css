@@ -1,0 +1,6 @@
+div.projects {
+    overflow-y: scroll;
+    grid-row: 2 / 3;
+    background-color: var(--colour-light-grey);
+    grid-column: 2 / 4;
+}
