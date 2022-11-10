@@ -1,0 +1,387 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
+
+/* /////////////////////////////////////// * \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+/* /////////////////////////////////////// VARIABLES \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+:root {
+    --colour-teal: #318EC2;
+    --colour-lilac: #B5A8F0;
+    --colour-light-grey: #DEE6EC;
+    --colour-purple: #9F69B8;
+    --colour-blue: #4D8BCC;
+    --colour-dark-grey: #555555;
+    --colour-light-black: #333333;
+    --colour-white: #FFFFFF;
+    --colour-black: #000000;
+}
+
+/* /////////////////////////////////////// OVERALL CONTAINER \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+div.container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1.25fr 4fr 2fr;
+    grid-template-rows: 1fr 6fr;
+}
+
+/* /////////////////////////////////////// NAVIGATION \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+div.container > div.nav {
+    background: linear-gradient(180deg, var(--colour-purple) 0%, var(--colour-blue) 91.15%);
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    color: var(--colour-white);
+    display: grid;
+    grid-template-rows: 1fr 2.5fr 2.5fr;
+    justify-content: center;
+}
+
+ul.nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+div.logo-title {
+    display: flex;
+}
+
+div.logo-title  > img {
+    width: 40px !important;
+}
+
+div.container > div.nav h1 {
+    font-weight: 900;
+    font-size: 32px;
+    padding-top: 8px;
+}
+
+div.container > div.nav .nav-items {
+    font-weight: bold;
+    font-size: 24px;
+    list-style: none;
+    margin: 12px 0;
+}
+
+div.container > div.nav .nav-items:hover {
+    color: #ffffffc3;
+    background-color: #0000002d;
+    width: fit-content;
+    padding: 0 16px 0 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+div.container > div.nav .first-nav-item:hover {
+    background-color: initial;
+    padding: 0;
+    color: #f9f9fcee;
+}
+
+div.container > div.nav .nav-items:first-child {
+    margin-top: 0;
+}
+
+div.container > div.nav .nav-items img {
+    margin-right: 8px;
+    width: 20px;
+}
+
+div.container > div.nav .nav-items p {
+    display: inline;
+}
+
+/* /////////////////////////////////////// HEADER \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+div.container > div.header,
+div.container > div.main {
+    grid-column: 2 / 3;
+    grid-column: 2 / 4;
+}
+
+div.container > div.header {
+    background-color: var(--colour-white);
+    display: grid;
+    grid-row: 1 / 2;
+}
+
+div.header-top {
+    display: grid;
+    grid-auto-flow: column;
+    margin: 0 48px;
+    grid-template-columns: 3fr 1fr;
+}
+
+div.header-top p {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+div.header-top p:hover {
+    color: var(--colour-purple);
+    cursor: pointer;
+}
+
+div.header-top > div > div.search-bar {
+    background-color: var(--colour-light-grey);
+    height: 20px;
+    min-width: 100px;
+    border-radius: 16px;
+    padding: 8px 16px 24px 16px;
+    margin: auto 8px;
+    font-size: 12px;
+}
+
+div.header-top > div > div.search-bar:hover {
+    background-color: #c7ccd0;
+    cursor: text;
+}
+
+div.header-top > div.search {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: 40px 1fr;
+}
+
+div.header-top > div.search img {
+    margin: auto;
+    padding: 16px;
+}
+
+div.header-top > div.search img:hover {
+    cursor: pointer;
+}
+
+div.header-top > div.usr-center {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 32px;
+}
+
+div.header-top > div.usr-center img:hover {
+    cursor: pointer;
+}
+
+div.header-bottom {
+    display: grid;
+    grid-template-columns: 80px 1fr 1fr;
+    margin-left: 48px;
+}
+
+div.header-bottom > div.logo-container {
+    display: grid;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+div.header-bottom > div.logo-container img {
+    padding: 0 0 8px 0;
+}
+
+div.header-bottom > div.welcome {
+    display: grid;
+}
+
+div.header-bottom > div.welcome p {
+    font-weight: bold;
+}
+
+div.header-bottom > div.welcome p:first-of-type {
+    font-size: 12px;
+}
+
+div.header-bottom > div.welcome p:last-of-type {
+    font-size: 18px;
+}
+
+div.header-bottom > div.btns {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+div.header-bottom > div.btns button {
+    background-color: var(--colour-teal);
+    width: 135px;
+    padding: 8px 16px;
+    border-radius: 16px;
+    color: var(--colour-white);
+    border: none;
+    font-weight: bold;
+}
+
+div.header-bottom > div.btns button:hover {
+    background-color: #1f6892;
+    cursor: pointer;
+}
+
+/* /////////////////////////////////////// PROJECTS \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+div.projects {
+    overflow-y: scroll;
+    grid-row: 2 / 3;
+    background-color: var(--colour-light-grey);
+    grid-column: 2 / 3;
+}
+
+div.projects > h2 {
+    margin-left: 16px;
+    margin-top: 4px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+div.projects > div.box-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px 16px;
+    margin: 16px;
+    height: max(600px);
+}
+
+div.projects > div.box-container div.box-items {
+    background-color: var(--colour-white);
+    border-radius: 16px;
+    border-left: 20px solid var(--colour-lilac);
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+    display: grid;
+    padding: 16px 0 0 16px;
+    grid-template-rows: 1fr auto;
+}
+
+div.projects > div.box-container div.box-items h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+div.projects > div.box-container div.box-items h4:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--colour-dark-grey);
+}
+
+div.projects > div.box-container div.box-items p {
+    font-size: 14px;
+    color: var(--colour-light-black);
+    margin-right: 8px;
+}
+
+div.box-container div.box-items div.box-icons {
+    text-align: right;
+    margin: 16px 16px 8px 0;
+}
+
+div.box-container div.box-items div.box-icons img {
+    padding: 0 8px;
+}
+
+div.box-container div.box-items div.box-icons img:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+/* /////////////////////////////////////// SIDEBAR \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+div.container > div.sidebar {
+    display: grid;
+}
+
+div.sidebar {
+    grid-row: 2 / 3;
+    background-color: var(--colour-light-grey);
+    grid-column: 3 / 3;
+}
+
+div.sidebar div.heading {
+    margin: 0 16px;
+    padding-top: 4px;
+}
+
+div.sidebar div.heading h2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+div.sidebar > div.trending div.heading h2 {
+    margin-top: 8px;
+}
+
+div.sidebar > div.announcements {
+    display: grid;
+    gap: 8px;
+    align-content: flex-start;
+}
+
+div.sidebar > div.announcements div.announcements-items > div:first-child, 
+div.sidebar > div.announcements div.announcements-items > div:nth-child(2) {
+    border-bottom: 2px solid var(--colour-light-grey);
+    padding-bottom: 16px;
+}
+
+div.sidebar > div.announcements div.announcements-items > div:nth-child(2), 
+div.sidebar > div.announcements div.announcements-items > div:last-child {
+    padding-top: 16px;
+}
+
+div.announcements > div.content,
+div.trending > div.content {
+    background-color: var(--colour-white);
+    display: grid;
+    border-radius: 16px;
+    margin: 0 16px;
+    padding: 16px 32px;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+div.announcements > div.content h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+div.content h4:hover {
+    color: var(--colour-dark-grey);
+    text-decoration: underline;
+    width: max-content;
+    cursor: pointer;
+}
+
+div.announcements > div.content p {
+    font-size: 12px;
+    color: var(--colour-light-black);
+}
+
+div.sidebar > div.trending {
+    display: grid;
+    gap: 16px;
+    align-content: flex-start;
+}
+
+div.trending > div.content {
+    gap: 24px;
+}
+
+div.trending > div.content > div.content-items {
+    display: flex;
+}
+
+div.trending > div.content img {
+    margin-right: 12px;
+}
+
+div.trending > div.content img:hover {
+    cursor: pointer;
+}
+
+div.trending > div.content h4 {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+div.trending > div.content p {
+    font-size: 14px;
+    color: var(--colour-dark-grey);
+}
