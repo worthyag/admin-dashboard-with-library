@@ -1,6 +1,63 @@
-div.projects {
+div.books {
     overflow-y: scroll;
     grid-row: 2 / 3;
     background-color: var(--colour-light-grey);
     grid-column: 2 / 4;
+}
+
+div.books > h2 {
+    margin-left: 16px;
+    margin-top: 4px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+div.books > div.box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 32px 16px;
+    margin: 16px;
+    height: max(600px);
+}
+
+div.books > div.box-container div.box-items {
+    background-color: var(--colour-white);
+    border-radius: 16px;
+    border-left: 20px solid var(--colour-lilac);
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.25));
+    display: grid;
+    padding: 16px 0 0 16px;
+    grid-template-rows: 1fr auto;
+}
+
+div.books > div.box-container div.box-items h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+div.books > div.box-container div.box-items h4:hover {
+    text-decoration: underline;
+    cursor: pointer;
+    color: var(--colour-dark-grey);
+}
+
+div.books > div.box-container div.box-items p {
+    font-size: 14px;
+    color: var(--colour-light-black);
+    margin-right: 8px;
+}
+
+div.box-container div.box-items div.box-icons {
+    text-align: right;
+    margin: 16px 16px 8px 0;
+}
+
+div.box-container div.box-items div.box-icons img {
+    padding: 0 8px;
+}
+
+div.box-container div.box-items div.box-icons img:hover {
+    transform: scale(1.2);
+    cursor: pointer;
 }
