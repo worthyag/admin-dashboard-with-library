@@ -67,8 +67,12 @@ div.books-container div.book-item div.book-icons img {
 
 div.books-container div.book-item div.book-icons img:hover {
     transform: scale(1.1);
-    filter: invert(61%) sepia(59%) saturate(3141%) hue-rotate(157deg) brightness(101%) contrast(101%);
+    filter: invert(62%) sepia(23%) saturate(5970%) hue-rotate(359deg) brightness(100%) contrast(105%);
     cursor: pointer;
+}
+
+div.books-container div.book-item div.book-icons img.r-icon:hover {
+    filter: invert(61%) sepia(59%) saturate(3141%) hue-rotate(157deg) brightness(101%) contrast(101%);
 }
 
 

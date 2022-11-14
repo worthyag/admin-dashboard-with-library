@@ -1,23 +1,23 @@
 // Empty library
 let myLibrary = [
-    {
-        Title: "Narnia",
-        Author: "NCK",
-        Pages: 1010,
-        Read: false
-    },
-    {
-        Title: "Harry Potter",
-        Author: "JKR",
-        Pages: 546,
-        Read: true
-    },
-    {
-        Title: "The Twits",
-        Author: "Roald dahl",
-        Pages: 210,
-        Read: false
-    }
+{
+    Title: "Narnia",
+    Author: "NCK",
+    Pages: 1010,
+    Read: false
+},
+{
+    Title: "Harry Potter",
+    Author: "JKR",
+    Pages: 546,
+    Read: true
+},
+{
+    Title: "The Twits",
+    Author: "Roald dahl",
+    Pages: 210,
+    Read: false
+}
 ];
 
 
@@ -48,6 +48,37 @@ let myLibrary = [
 //     // displayBooks();
 // }
 
+
+// Add books to local storage 
+function addLocalStorage() {
+    // localStorage => saves things in key value pairs - key = library : myLibrary
+    // localStorage.setItem('library', JSON.stringify(
+    // [{
+    //     Title: "Narnia",
+    //     Author: "NCK",
+    //     Pages: 1010,
+    //     Read: false
+    // },
+    // {
+    //     Title: "Harry Potter",
+    //     Author: "JKR",
+    //     Pages: 546,
+    //     Read: true
+    // },
+    // {
+    //     Title: "The Twits",
+    //     Author: "Roald dahl",
+    //     Pages: 210,
+    //     Read: false
+    // }]
+    // ))
+
+    myLibrary = JSON.parse(localStorage.getItem('library'))  || [];
+    renderBooks();
+    // saveAndRenderBooks();
+}
+
+
 const books = document.querySelector(".books-container");
 
 function createBookElement(element_, content_, className_) {
@@ -59,7 +90,7 @@ function createBookElement(element_, content_, className_) {
 
 
 function isRead(book) {
-    // read icon
+    // create read icon
     const readIcon = createBookElement('img', '', '');
     readIcon.setAttribute('src', `${(book.Read) ? '../img/icons/icon-read.svg' 
                                                 : '../img/icons/icon-not-read.svg'}`);
@@ -67,33 +98,52 @@ function isRead(book) {
                                                 : 'not-read-icon book-icon r-icon'}`);                                           
     readIcon.setAttribute('alt', "Read or not icon");
 
-
+    // Add event
     readIcon.addEventListener('click', (e) => {
         // Adding the relevant classes for whether a book has been read or not.
         if (e.target.classList.contains('read-icon')) {
             e.target.classList.replace('read-icon', 'not-read-icon');
             readIcon.setAttribute('src', '../img/icons/icon-not-read.svg')
 
-            // console.log(e.target.classList); // test
             e.target.parentNode.parentNode.classList.toggle('read');
-            console.log(e.target.parentNode.previousElementSibling.children[3]);
             book.Read = false;
             e.target.parentNode.previousElementSibling.children[3].textContent = "Read: Not read yet";
+            renderBooks();
+            // saveAndRenderBooks();
         }
         else {
             e.target.classList.replace('not-read-icon', 'read-icon');
             readIcon.setAttribute('src', '../img/icons/icon-read.svg')
 
-            // console.log(e.target.classList); // test
             e.target.parentNode.parentNode.classList.toggle('read');
             book.Read = true;
-            e.target.parentNode.previousElementSibling.children[3].textContent = "Read: Read"
+            e.target.parentNode.previousElementSibling.children[3].textContent = "Read: Read";
+            renderBooks();
+            // saveAndRenderBooks();
         }
-
-        // console.log(myLibrary); // testing
     })
 
     return readIcon;
+}
+
+function editBook(book) {
+    // create icon
+    const editIcon = createBookElement('img', '', 'edit-icon book-icon');
+    editIcon.setAttribute('src', '../img/icons/icon-pencil.svg');
+    editIcon.setAttribute("alt", "Edit book icon");
+
+    // Add event
+    editIcon.addEventListener('click', () => {
+        console.log("Book", book);
+    })
+
+    return editIcon;
+}
+
+function deleteBook(index) {
+    myLibrary.splice(index, 1);
+    renderBooks();
+    // saveAndRenderBooks();
 }
 
 
@@ -118,7 +168,11 @@ function createBookItem(book, index) {
     'book-reads'));
 
     // book icons
-    const bookIcons = createBookElement('div', '', 'book-icons');
+    const bookIcons = createBookElement('div', null, 'book-icons');
+
+    // edit icon
+    const editIcon = editBook(book);
+    bookIcons.appendChild(editIcon);
     
     // read icon
     const readIcon = isRead(book);
@@ -128,6 +182,13 @@ function createBookItem(book, index) {
     const binIcon = createBookElement('img', '', 'bin-icon book-icon');
     binIcon.setAttribute('src', '../img/icons/icon-bin.svg');
     binIcon.setAttribute('alt', "Bin book icon");
+
+    binIcon.addEventListener('click', (e) => {
+        console.log("You clicked the bin!");
+        deleteBook(index);
+        console.log(myLibrary);
+    })
+
     bookIcons.appendChild(binIcon);
 
     console.log(bookItem)
@@ -139,9 +200,18 @@ function createBookItem(book, index) {
 
 
 function renderBooks() {
+    books.textContent = "";
     myLibrary.map((book, index) => {
         createBookItem(book, index);
     })
 }
 
-renderBooks();
+// to add to local storage
+// function saveAndRenderBooks() {
+//     localStorage.setItem('library', JSON.stringify(myLibrary));
+//     renderBooks();
+// }
+
+
+addLocalStorage();
+// renderBooks();
