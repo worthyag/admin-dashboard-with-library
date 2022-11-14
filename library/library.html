@@ -108,7 +108,7 @@
                         <p>Worthy AG @worthyag</p>
                     </div>
                     <div class="btns">
-                        <button type="button">New</button>
+                        <button id="add-book-btn" type="button">Add Book</button>
                         <button type="button">Upload</button>
                         <button type="button">Share</button>
                     </div>
@@ -135,10 +135,37 @@
             <!-- /////////////////////////////////////// FORM \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ -->
             <div class="modal-container" id="modal">
                 <div class="modal-content">
-                    <span class="close">X</span>
-                    <div class="modal-form">
+                    <div class="modal-header">
                         <h1 class="form-title">Add book</h1>
-                        <form class="add-book-form"></form>
+                        <span id="close-btn-form" class="close">&times;</span>
+                    </div>
+                    <div class="modal-form">
+                        <form id="add-book-form" action="">
+                            <div class="book-title">
+                                <label for="title">Book Title</label>
+                                <input type="text" name="title" id="title" placeholder="Ex. The BFG" required
+                                maxlength="100">
+                            </div>
+                            <div class="book-author">
+                                <label for="author">Book Author</label>
+                                <input type="text" name="author" id="author" placeholder="Ex. Roald Dahl" required
+                                maxlength="100">
+                            </div>
+                            <div class="book-length">
+                                <label for="length">Book Length</label>
+                                <input type="number" name="length" id="length" placeholder="pages" required
+                                max="10000">
+                            </div>
+                            <div class="book-read">
+                                <label for="read">Read?</label>
+                                <select name="read" id="read" required>
+                                    <option value="">---</option>
+                                    <option value="true">yes</option>
+                                    <option value="false">no</option>
+                                </select>
+                            </div>
+                            <button type="submit" id="submit-form">Add Book</button>
+                        </form>
                     </div>
                 </div>
             </div>

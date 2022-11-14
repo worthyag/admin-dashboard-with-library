@@ -215,3 +215,30 @@ function renderBooks() {
 
 addLocalStorage();
 // renderBooks();
+
+// Show Form
+const addBookBtn = document.querySelector('#add-book-btn');
+const closeBtn = document.querySelector('#close-btn-form');
+const modalForm = document.querySelector('#modal');
+
+addBookBtn.addEventListener('click', displayForm);
+closeBtn.addEventListener('click', closeForm);
+window.addEventListener('click', windowCloseForm)
+
+function displayForm() {
+    modalForm.style.display = "block";
+    console.log("clicked display form");
+}
+
+function closeForm() {
+    modalForm.style.display = "none";
+    console.log("clicked close form");
+}
+
+function windowCloseForm(e) {
+    console.log(e)
+    if ((e.target === modalForm) || (e.target === books)) {
+        modalForm.style.display = "none";
+        console.log("clicked close form");
+    }
+}
