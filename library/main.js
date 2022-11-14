@@ -58,6 +58,45 @@ function createBookElement(element_, content_, className_) {
 }
 
 
+function isRead(book) {
+    // read icon
+    const readIcon = createBookElement('img', '', '');
+    readIcon.setAttribute('src', `${(book.Read) ? '../img/icons/icon-read.svg' 
+                                                : '../img/icons/icon-not-read.svg'}`);
+    readIcon.setAttribute('class', `${(book.Read) ? 'read-icon book-icon r-icon' 
+                                                : 'not-read-icon book-icon r-icon'}`);                                           
+    readIcon.setAttribute('alt', "Read or not icon");
+
+
+    readIcon.addEventListener('click', (e) => {
+        // Adding the relevant classes for whether a book has been read or not.
+        if (e.target.classList.contains('read-icon')) {
+            e.target.classList.replace('read-icon', 'not-read-icon');
+            readIcon.setAttribute('src', '../img/icons/icon-not-read.svg')
+
+            // console.log(e.target.classList); // test
+            e.target.parentNode.parentNode.classList.toggle('read');
+            console.log(e.target.parentNode.previousElementSibling.children[3]);
+            book.Read = false;
+            e.target.parentNode.previousElementSibling.children[3].textContent = "Read: Not read yet";
+        }
+        else {
+            e.target.classList.replace('not-read-icon', 'read-icon');
+            readIcon.setAttribute('src', '../img/icons/icon-read.svg')
+
+            // console.log(e.target.classList); // test
+            e.target.parentNode.parentNode.classList.toggle('read');
+            book.Read = true;
+            e.target.parentNode.previousElementSibling.children[3].textContent = "Read: Read"
+        }
+
+        // console.log(myLibrary); // testing
+    })
+
+    return readIcon;
+}
+
+
 function createBookItem(book, index) {
     // container div
     const bookItem = document.createElement('div');
@@ -82,12 +121,7 @@ function createBookItem(book, index) {
     const bookIcons = createBookElement('div', '', 'book-icons');
     
     // read icon
-    const readIcon = createBookElement('img', '', '');
-    readIcon.setAttribute('src', `${(book.Read) ? '../img/icons/icon-read.svg' 
-                                                : '../img/icons/icon-not-read.svg'}`);
-    readIcon.setAttribute('class', `${(book.Read) ? 'read-icon book-icon' 
-                                                : 'not-read-icon book-icon'}`);
-    readIcon.setAttribute('alt', "Read or not icon");
+    const readIcon = isRead(book);
     bookIcons.appendChild(readIcon);
     
     // bin icon
@@ -101,9 +135,6 @@ function createBookItem(book, index) {
     bookItem.appendChild(bookHeader);
     bookItem.appendChild(bookIcons);
     books.appendChild(bookItem);
-
-    // Start from here (19:24)
-    // books.insertAdjacentElement("afterbegin", bookItem);
 }
 
 

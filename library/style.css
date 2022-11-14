@@ -66,7 +66,8 @@ div.books-container div.book-item div.book-icons img {
 }
 
 div.books-container div.book-item div.book-icons img:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
+    filter: invert(61%) sepia(59%) saturate(3141%) hue-rotate(157deg) brightness(101%) contrast(101%);
     cursor: pointer;
 }
 
@@ -74,5 +75,6 @@ div.books-container div.book-item div.book-icons img:hover {
 /* Books Icons */
 /* Started editing the bin button, to how to select it to delete the book */
 div.books-container div.book-item div.book-icons img.bin-icon:hover {
-   transform: rotate(20deg);
+   transform: scale(1.1) rotate(10deg);
+   filter: invert(18%) sepia(54%) saturate(6308%) hue-rotate(339deg) brightness(87%) contrast(98%);
 }
