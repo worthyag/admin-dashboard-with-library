@@ -4,19 +4,22 @@ let myLibrary = [
     Title: "Narnia",
     Author: "NCK",
     Pages: 1010,
-    Read: false
+    Read: false,
+    id: 1
 },
 {
     Title: "Harry Potter",
     Author: "JKR",
     Pages: 546,
-    Read: true
+    Read: true,
+    id: 2
 },
 {
     Title: "The Twits",
     Author: "Roald dahl",
     Pages: 210,
-    Read: false
+    Read: false,
+    id: 3
 }
 ];
 
@@ -28,6 +31,7 @@ function Book(Title, Author, Pages, Read) {
     this.Author = Author;
     this.Pages = Pages;
     this.Read = Read;
+    this.id = Math.floor(Math.random() * 1000000);
 
     // Methods
     // this.readMsg = function() {
@@ -44,6 +48,7 @@ function Book(Title, Author, Pages, Read) {
 // Show Form
 const addBookBtn = document.querySelector('#add-book-btn');
 const closeBtn = document.querySelector('#close-btn-form');
+// const closeEditBtn = document.querySelector('#close-btn-form');
 const modalForm = document.querySelector('#modal');
 
 addBookBtn.addEventListener('click', displayForm);
@@ -93,21 +98,13 @@ function processFormData(e) {
     })
 
     if (document.querySelector(".form-title").textContent === "Edit Book") {
-        let id = e.target.id;
-        console.log("id", e.target)
-        let editBook = myLibrary.filter(book => book.id === id)[0];
+        const book = new Book(userData[0], userData[1], userData[2], userData[3]);
+        myLibrary.push(book);
 
-        console.log("book ", book)
-        console.log("EditBook ", editBook);
+        console.log("book key: ", book.id);
 
-        editBook.Title = userData[0];
-        editBook.Author = userData[1];
-        editBook.Title = userData[2];
-        editBook.Title = userData[3];
+        // deleteBook(index);
 
-
-
-        console.log(myLibrary);
         renderBooks();
     }
     else {
@@ -155,7 +152,7 @@ function addLocalStorage() {
     // }]
     // ))
 
-    myLibrary = JSON.parse(localStorage.getItem('library'))  || [];
+    // myLibrary = JSON.parse(localStorage.getItem('library'))  || [];
     renderBooks();
     // saveAndRenderBooks();
 }
@@ -209,21 +206,27 @@ function isRead(book) {
 }
 
 
+// Temporary solution
 function fillOutEditForm(book) {
     modalForm.style.display = "block";
     document.querySelector(".form-title").textContent = "Edit Book";
     document.querySelector("#submit-form").textContent = "Save Changes";
 
     const editForm = document.querySelector("#add-book-form");
-    editForm.setAttribute('id', book.id);
+    // editForm.setAttribute('id', book.id);
     editForm.setAttribute('class', "add-book-form");
     document.querySelector("#title").value = book.Title || "";
     document.querySelector("#author").value = book.Author || "";
     document.querySelector("#length").value = book.Pages || "";
     document.querySelector("#read").value = book.Read || false;
+
+    // const key = book.id;
+
+    console.log("Set id: ", book.id);
 }
 
 
+// Temporary solution
 function editBook(book) {
     // create icon
     const editIcon = createBookElement('img', '', 'edit-icon book-icon');
@@ -231,14 +234,20 @@ function editBook(book) {
     editIcon.setAttribute("alt", "Edit book icon");
 
     // Add event
-    editIcon.addEventListener('click', () => {
+    editIcon.addEventListener('click', (e) => {
         console.log("Book", book);
+        console.log("Book id ", book.id);
+        // const key = e.target.parentNode.parentNode.getAttribute("key");
 
         fillOutEditForm(book);
+        console.log("Book index: ", myLibrary.indexOf(book));
+        const index = myLibrary.indexOf(book)
+        deleteBook(index);
     })
 
     return editIcon;
 }
+
 
 function deleteBook(index) {
     myLibrary.splice(index, 1);
