@@ -128,7 +128,7 @@ span.close:hover {
     color: red;
 }
 
-#add-book-form {
+.add-book-form {
     /* background-color: #333; */
     color: #fff;
     font-weight: bold;
@@ -139,15 +139,15 @@ span.close:hover {
     font-size: 24px;
 }
 
-#add-book-form  > .book-title,
-#add-book-form  > .book-author,
-#add-book-form  > .book-length,
-#add-book-form  > .book-read {
+.add-book-form  > .book-title,
+.add-book-form  > .book-author,
+.add-book-form  > .book-length,
+.add-book-form  > .book-read {
     margin: 16px;
 }
 
-#add-book-form input, 
-#add-book-form select {
+.add-book-form input, 
+.add-book-form select {
     width: 200px;
     height: 28px;
     float: right;
@@ -159,7 +159,7 @@ span.close:hover {
 
 
 /* Form Btn */
-#add-book-form button {
+.add-book-form button {
     font-weight: bold;
     background-color: #fff;
     color: #333;
@@ -170,7 +170,7 @@ span.close:hover {
     font-size: 20px;
 }
 
-#add-book-form button:hover {
+.add-book-form button:hover {
     background-color: rgb(140, 119, 233);
     cursor: pointer;
 }

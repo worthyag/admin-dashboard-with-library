@@ -21,32 +21,114 @@ let myLibrary = [
 ];
 
 
-// // Book Constructor
-// function Book(Title, Author, Pages, Read) {
-//     // Properties
-//     this.Title = Title;
-//     this.Author = Author;
-//     this.Pages = Pages;
-//     this.Read = Read;
+// Book Constructor
+function Book(Title, Author, Pages, Read) {
+    // Properties
+    this.Title = Title;
+    this.Author = Author;
+    this.Pages = Pages;
+    this.Read = Read;
 
-//     // Methods
-//     // this.readMsg = function() {
-//     //     return (this.Read) ? "read" : "not read yet";
-//     // }
+    // Methods
+    // this.readMsg = function() {
+    //     return (this.Read) ? "read" : "not read yet";
+    // }
 
-//     // this.info = function() {
-//     //     return `${this.Title} by ${this.Author}, ${this.Pages} pages, ${this.readMsg()}.`;
-//     // }
-// }
+    // this.info = function() {
+    //     return `${this.Title} by ${this.Author}, ${this.Pages} pages, ${this.readMsg()}.`;
+    // }
+}
 
 
-// // Add book to Library function
-// function addBookToLibrary(Title, Author, Pages, Read) {
-//     const book = new Book(Title, Author, Pages, Read);
-//     myLibrary.push(book);
-//     toggleDisplayBooks();
-//     // displayBooks();
-// }
+
+// Show Form
+const addBookBtn = document.querySelector('#add-book-btn');
+const closeBtn = document.querySelector('#close-btn-form');
+const modalForm = document.querySelector('#modal');
+
+addBookBtn.addEventListener('click', displayForm);
+closeBtn.addEventListener('click', closeForm);
+window.addEventListener('click', windowCloseForm)
+
+function displayForm() {
+    modalForm.style.display = "block";
+    console.log("clicked display form");
+}
+
+function closeForm() {
+    modalForm.style.display = "none";
+    console.log("clicked close form");
+}
+
+function windowCloseForm(e) {
+    // console.log(e)
+    if ((e.target === modalForm) || (e.target === books)) {
+        modalForm.style.display = "none";
+        console.log("clicked close form");
+    }
+}
+
+
+// Process Data When Form Submits
+const form = document.querySelector(".add-book-form");
+form.addEventListener('submit', processFormData);
+
+function processFormData(e) {
+    e.preventDefault();
+
+    console.log("e", e);
+    const formData = new FormData(e.target);
+
+    userData = [];
+
+    formData.forEach((formData, key) => {
+        if (key === "length")
+            formData = parseInt(formData)
+        else if (key === "read") {
+            formData = (formData === 'false') ? false : true;
+            // console.log("bool ", formData); // testing
+        }
+        userData.push(formData);
+        // console.log(userData); // for testing
+    })
+
+    if (document.querySelector(".form-title").textContent === "Edit Book") {
+        let id = e.target.id;
+        console.log("id", e.target)
+        let editBook = myLibrary.filter(book => book.id === id)[0];
+
+        console.log("book ", book)
+        console.log("EditBook ", editBook);
+
+        editBook.Title = userData[0];
+        editBook.Author = userData[1];
+        editBook.Title = userData[2];
+        editBook.Title = userData[3];
+
+
+
+        console.log(myLibrary);
+        renderBooks();
+    }
+    else {
+        addBookToLibrary(userData[0], userData[1], userData[2], userData[3]);
+        console.log(myLibrary);
+    }
+
+    form.reset(); // temp
+    closeForm(); // hides form
+
+    e.preventDefault();
+}
+
+
+// Add book to Library function
+function addBookToLibrary(Title, Author, Pages, Read) {
+    const book = new Book(Title, Author, Pages, Read);
+    myLibrary.push(book);
+    // displayBooks();
+    renderBooks();
+}
 
 
 // Add books to local storage 
@@ -126,6 +208,22 @@ function isRead(book) {
     return readIcon;
 }
 
+
+function fillOutEditForm(book) {
+    modalForm.style.display = "block";
+    document.querySelector(".form-title").textContent = "Edit Book";
+    document.querySelector("#submit-form").textContent = "Save Changes";
+
+    const editForm = document.querySelector("#add-book-form");
+    editForm.setAttribute('id', book.id);
+    editForm.setAttribute('class', "add-book-form");
+    document.querySelector("#title").value = book.Title || "";
+    document.querySelector("#author").value = book.Author || "";
+    document.querySelector("#length").value = book.Pages || "";
+    document.querySelector("#read").value = book.Read || false;
+}
+
+
 function editBook(book) {
     // create icon
     const editIcon = createBookElement('img', '', 'edit-icon book-icon');
@@ -135,6 +233,8 @@ function editBook(book) {
     // Add event
     editIcon.addEventListener('click', () => {
         console.log("Book", book);
+
+        fillOutEditForm(book);
     })
 
     return editIcon;
@@ -216,29 +316,3 @@ function renderBooks() {
 addLocalStorage();
 // renderBooks();
 
-// Show Form
-const addBookBtn = document.querySelector('#add-book-btn');
-const closeBtn = document.querySelector('#close-btn-form');
-const modalForm = document.querySelector('#modal');
-
-addBookBtn.addEventListener('click', displayForm);
-closeBtn.addEventListener('click', closeForm);
-window.addEventListener('click', windowCloseForm)
-
-function displayForm() {
-    modalForm.style.display = "block";
-    console.log("clicked display form");
-}
-
-function closeForm() {
-    modalForm.style.display = "none";
-    console.log("clicked close form");
-}
-
-function windowCloseForm(e) {
-    console.log(e)
-    if ((e.target === modalForm) || (e.target === books)) {
-        modalForm.style.display = "none";
-        console.log("clicked close form");
-    }
-}
