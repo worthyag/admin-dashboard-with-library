@@ -26,23 +26,15 @@ let myLibrary = [
 ];
 
 
-// Book Constructor
-function Book(Title, Author, Pages, Read) {
-    // Properties
-    this.Title = Title;
-    this.Author = Author;
-    this.Pages = Pages;
-    this.Read = Read;
-    this.id = Math.floor(Math.random() * 1000000);
-
-    // Methods
-    // this.readMsg = function() {
-    //     return (this.Read) ? "read" : "not read yet";
-    // }
-
-    // this.info = function() {
-    //     return `${this.Title} by ${this.Author}, ${this.Pages} pages, ${this.readMsg()}.`;
-    // }
+// Book Class
+class Book {
+    constructor(Title, Author, Pages, Read) {
+        this.Title = Title;
+        this.Author = Author;
+        this.Pages = Pages;
+        this.Read = Read;
+        this.id = Math.floor(Math.random() * 1000000);
+    }  
 }
 
 
