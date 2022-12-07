@@ -1,3 +1,5 @@
+// Switching to classes
+
 // Empty library
 let myLibrary = [
 {
